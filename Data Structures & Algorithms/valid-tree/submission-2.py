@@ -1,20 +1,18 @@
-
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
 
-        if len(edges) != n - 1:
+        if len(edges) != n-1:
             return False
 
-        g = defaultdict(list)
-
+        g = {i: [] for i in range(n)}
         for a, b in edges:
             g[a].append(b)
             g[b].append(a)
 
         seen = set()
-
         def dfs(node, parent):
             seen.add(node)
+
             for nod in g[node]:
                 if nod == parent:
                     continue
@@ -27,6 +25,10 @@ class Solution:
             return True
 
         if not dfs(0, -1):
-            return False
-
+            return False       
         return len(seen) == n
+
+        
+
+
+        
